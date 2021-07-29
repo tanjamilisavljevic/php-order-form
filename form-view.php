@@ -1,4 +1,12 @@
-<?php // This files is mostly containing things for your view / html ?>
+<?php // This files is mostly containing things for your view / html
+$email = $_POST['email'];
+$street = $_POST['street'];
+$streetnumber = $_POST['streetnumber'];
+$city = $_POST['city'];
+
+$successMessage = "Thanks for your order!" . " " . $email . " " . $street . " " . $streetnumber . " " . $city;
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -9,11 +17,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"
           rel="stylesheet"/>
-    <title>Your fancy store</title>
+    <title>Bauhaus store</title>
 </head>
 <body>
 <div class="container">
     <h1>Place your order</h1>
+<!-- display message that the purchase is successful-->
+    <?php
+    if (!empty($_POST)){
+        ?>
+    <div class="alert alert-success">
+        <?php echo $successMessage ?>
+    </div>
+<?php }; ?>
+
+
     <?php // Navigation for when you need it ?>
     <?php /*
     <nav>
@@ -74,7 +92,7 @@
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
 
-    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
+    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in das triadische ballett.</footer>
 </div>
 
 <style>

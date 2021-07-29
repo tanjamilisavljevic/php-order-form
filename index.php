@@ -21,9 +21,11 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
-// TODO: provide some products (you may overwrite the example)
 $products = [
-    ['name' => 'Your favourite drink', 'price' => 2.5],
+    ['name' => 'Taucher', 'price' => 22],
+    ['name' => 'Kugelrock', 'price' => 33],
+    ['name' => 'Abstrakter', 'price' => 44],
+    ['name' => 'Kugelhande', 'price' => 55]
 ];
 
 $totalValue = 0;
@@ -54,3 +56,6 @@ if ($formSubmitted) {
 }
 
 require 'form-view.php';
+
+
+
