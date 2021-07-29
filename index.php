@@ -1,52 +1,56 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-?>
 
-<!DOCTYPE html>
-<html lang="en">
+// This file is your starting point (= since it's the index)
+// It will contain most of the logic, to prevent making a messy mix in the html
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Form</title>
-</head>
-<body>
+// This line makes PHP behave in a more strict way
+declare(strict_types=1);
 
+// We are going to use session variables so we need to enable sessions
+session_start();
 
-<form action="form.php" method="post">
+// Use this function when you need to need an overview of these variables
+function whatIsHappening() {
+    echo '<h2>$_GET</h2>';
+    var_dump($_GET);
+    echo '<h2>$_POST</h2>';
+    var_dump($_POST);
+    echo '<h2>$_COOKIE</h2>';
+    var_dump($_COOKIE);
+    echo '<h2>$_SESSION</h2>';
+    var_dump($_SESSION);
+}
 
-    <label for="firstName">First name:</label>
-    <input type="text" name="firstName" id="firstName">
-    <label for="lastName">Last name:</label>
-    <input type="text" name="lastName" id="lastName">
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
-    <label for="streetName">Street:</label>
-    <input type="text" name="streetName" id="streetName">
-    <label for="streetNumber">Street number:</label>
-    <input type="number" name="streetNumber" id="streetNumber">
-    <label for="zip">Zip code:</label>
-    <input type="number" name="zip" id="zip">
-    <label for="city">City:</label>
-    <input type="text" name="city" id="city">
-    <label for="country">Country:</label>
-    <input type="text" name="country" id="country">
+// TODO: provide some products (you may overwrite the example)
+$products = [
+    ['name' => 'Your favourite drink', 'price' => 2.5],
+];
 
-    <p class="selection"> Select products: </p>
-    <input type="checkbox" id="product1" name="product1" value="Water">
-    <label for="product1"> Water </label>
-    <input type="checkbox" id="product2" name="product2" value="Fire">
-    <label for="product2"> Fire</label>
-    <input type="checkbox" id="product3" name="product3" value="Ice">
-    <label for="product3"> Ice</label>
+$totalValue = 0;
 
+function validate()
+{
+    // This function will send a list of invalid fields back
+    return [];
+}
 
-    <input class="submitButton" type="submit" name="submit" value="Place order">
+function handleForm()
+{
+    // TODO: form related tasks (step 1)
 
+    // Validation (step 2)
+    $invalidFields = validate();
+    if (!empty($invalidFields)) {
+        // TODO: handle errors
+    } else {
+        // TODO: handle successful submission
+    }
+}
 
+// TODO: replace this if by an actual check
+$formSubmitted = false;
+if ($formSubmitted) {
+    handleForm();
+}
 
-</form>
-</body>
-</html>
+require 'form-view.php';
