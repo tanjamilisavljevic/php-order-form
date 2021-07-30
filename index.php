@@ -54,7 +54,7 @@ function validate()
     if (empty($_POST['city'])) {
         $errors[] = 'city';
     }
-    if (empty($_POST['zipcode'])) {
+    if (empty($_POST['zipcode']) or !is_numeric($_POST['zipcode'])) {
         $errors[] = 'zipcode';
     }
     return $errors;
