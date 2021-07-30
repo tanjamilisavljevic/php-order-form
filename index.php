@@ -45,6 +45,7 @@ function validate()
     if (empty($_POST['email'])) {
         $errors[] = 'email';
     }
+//   TODO: errors for all elements
 
     return $errors;
 }
@@ -73,7 +74,7 @@ function handleForm($products)
         foreach ($productNumbers as $productNumber) {
             $productNames[] = $products[$productNumber]['name'];
         }
-
+//TODO: Fix messages
         $message = 'Products : <br> ' . implode (',',$productNames);
         $message .= '<br>';
         $message .= 'Your email address : ' . $_POST['email'];
