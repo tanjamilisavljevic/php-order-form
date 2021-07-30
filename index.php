@@ -71,7 +71,6 @@ function handleForm($products)
             $message .= "Please provide your {$invalidField}.";
             $message .= '<br>';
         }
-
         return [
             'errors' => true,
             'message' => $message
@@ -83,8 +82,8 @@ function handleForm($products)
         foreach ($productNumbers as $productNumber) {
             $productNames[] = $products[$productNumber]['name'];
         }
-//TODO: Fix messages
-        $message = 'Products : <br> ' . implode(',', $productNames);
+
+        $message = 'Products : ' . implode(', ', $productNames);
         $message .= '<br>';
         $message .= 'Your email address : ' . $_POST['email'];
         $message .= '<br>';
@@ -96,7 +95,6 @@ function handleForm($products)
     }
 }
 
-// TODO: replace this if by an actual check
 $formSubmitted = !empty($_POST);
 $result = [];
 
