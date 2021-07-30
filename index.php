@@ -45,8 +45,18 @@ function validate()
     if (empty($_POST['email'])) {
         $errors[] = 'email';
     }
-//   TODO: errors for all elements
-
+    if (empty($_POST['street'])) {
+        $errors[] = 'street';
+    }
+    if (empty($_POST['streetnumber'])) {
+        $errors[] = 'streetnumber';
+    }
+    if (empty($_POST['city'])) {
+        $errors[] = 'city';
+    }
+    if (empty($_POST['zipcode'])) {
+        $errors[] = 'zipcode';
+    }
     return $errors;
 }
 
@@ -56,10 +66,9 @@ function handleForm($products)
     // Validation (step 2)
     $invalidFields = validate();
     if (!empty($invalidFields)) {
-        // TODO: handle errors
         $message = '';
         foreach ($invalidFields as $invalidField) {
-            $message .= "Please provide your {$invalidField}";
+            $message .= "Please provide your {$invalidField}.";
             $message .= '<br>';
         }
 
@@ -75,7 +84,7 @@ function handleForm($products)
             $productNames[] = $products[$productNumber]['name'];
         }
 //TODO: Fix messages
-        $message = 'Products : <br> ' . implode (',',$productNames);
+        $message = 'Products : <br> ' . implode(',', $productNames);
         $message .= '<br>';
         $message .= 'Your email address : ' . $_POST['email'];
         $message .= '<br>';
