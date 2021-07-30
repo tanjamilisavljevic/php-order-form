@@ -17,9 +17,9 @@
 <div class="container">
     <h1>Place your order</h1>
     <!-- display message that the purchase is successful-->
-    <?php if (!empty($confirmationMessage)) { ?>
-        <div class="alert alert-success">
-            <?= $confirmationMessage ?>
+    <?php if (!empty($result['message'])) { ?>
+        <div class="alert <?php if ($result['errors']) { echo 'alert-danger'; } else { echo 'alert-success'; } ?>">
+            <?= $result['message'] ?>
         </div>
     <?php }; ?>
 

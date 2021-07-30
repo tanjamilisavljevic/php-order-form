@@ -40,44 +40,58 @@ $totalValue = 0;
 function validate()
 {
     // This function will send a list of invalid fields back
-    return [];
+    $errors = [];
+
+    if (empty($_POST['email'])) {
+        $errors[] = 'email';
+    }
+
+    return $errors;
 }
 
 
 function handleForm($products)
 {
-    // TODO: form related tasks (step 1)
-
-    $productNumbers = array_keys($_POST['products']);
-    $productNames = [];
-
-    foreach ($productNumbers as $productNumber) {
-        $productNames[] = $products[$productNumber]['name'];
-    }
-
-    $message = 'Products : <br> ' . implode (',',$productNames);
-    $message .= '<br>';
-    $message .= 'Your email address : ' . $_POST['email'];
-    $message .= '<br>';
-    $message .= 'Your address : ' . $_POST['street'] . ' ' . $_POST['streetnumber'] . ', ' . $_POST['zipcode'] . ' ' . $_POST['city'];
-    return $message;
-
-
     // Validation (step 2)
     $invalidFields = validate();
     if (!empty($invalidFields)) {
         // TODO: handle errors
+        $message = '';
+        foreach ($invalidFields as $invalidField) {
+            $message .= "Please provide your {$invalidField}";
+            $message .= '<br>';
+        }
+
+        return [
+            'errors' => true,
+            'message' => $message
+        ];
     } else {
-        // TODO: handle successful submission
+        $productNumbers = array_keys($_POST['products']);
+        $productNames = [];
+
+        foreach ($productNumbers as $productNumber) {
+            $productNames[] = $products[$productNumber]['name'];
+        }
+
+        $message = 'Products : <br> ' . implode (',',$productNames);
+        $message .= '<br>';
+        $message .= 'Your email address : ' . $_POST['email'];
+        $message .= '<br>';
+        $message .= 'Your address : ' . $_POST['street'] . ' ' . $_POST['streetnumber'] . ', ' . $_POST['zipcode'] . ' ' . $_POST['city'];
+        return [
+            'errors' => false,
+            'message' => $message
+        ];
     }
 }
 
 // TODO: replace this if by an actual check
 $formSubmitted = !empty($_POST);
-$confirmationMessage = '';
+$result = [];
 
 if ($formSubmitted) {
-    $confirmationMessage = handleForm($products);
+    $result = handleForm($products);
 }
 
 require 'form-view.php';
