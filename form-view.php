@@ -1,10 +1,4 @@
 <?php // This files is mostly containing things for your view / html
-$email = $_POST['email'];
-$street = $_POST['street'];
-$streetnumber = $_POST['streetnumber'];
-$city = $_POST['city'];
-
-$successMessage = "Thanks for your order!" . " " . $email . " " . $street . " " . $streetnumber . " " . $city;
 
 ?>
 
@@ -22,14 +16,12 @@ $successMessage = "Thanks for your order!" . " " . $email . " " . $street . " " 
 <body>
 <div class="container">
     <h1>Place your order</h1>
-<!-- display message that the purchase is successful-->
-    <?php
-    if (!empty($_POST)){
-        ?>
-    <div class="alert alert-success">
-        <?php echo $successMessage ?>
-    </div>
-<?php }; ?>
+    <!-- display message that the purchase is successful-->
+    <?php if (!empty($confirmationMessage)) { ?>
+        <div class="alert alert-success">
+            <?= $confirmationMessage ?>
+        </div>
+    <?php }; ?>
 
 
     <?php // Navigation for when you need it ?>
@@ -84,8 +76,9 @@ $successMessage = "Thanks for your order!" . " " . $email . " " . $street . " " 
             <?php foreach ($products as $i => $product): ?>
                 <label>
                     <?php // <?p= is equal to <?php echo ?>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
-                    &euro; <?= number_format($product['price'], 2) ?></label><br />
+                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?>
+                    -
+                    &euro; <?= number_format($product['price'], 2) ?></label><br/>
             <?php endforeach; ?>
         </fieldset>
 
