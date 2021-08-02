@@ -25,7 +25,7 @@ function whatIsHappening()
     var_dump($_SESSION);
     echo '</pre>';
 }
-whatIsHappening();
+//whatIsHappening();
 
 
 $products = [
@@ -61,7 +61,7 @@ function validate()
 }
 
 
-function handleForm($products)
+function handleForm($products, &$totalValue)
 {
     // Validation (step 2)
     $invalidFields = validate();
@@ -81,6 +81,7 @@ function handleForm($products)
 
         foreach ($productNumbers as $productNumber) {
             $productNames[] = $products[$productNumber]['name'];
+            $totalValue = $totalValue+ $products[$productNumber]['price'];
         }
 
         $message = 'Products : ' . implode(', ', $productNames);
@@ -93,10 +94,13 @@ function handleForm($products)
         $_SESSION['streetnumber'] = $_POST['streetnumber'];
         $_SESSION['zipcode'] = $_POST['zipcode'];
         $_SESSION['city'] = $_POST['city'];
+        $message .= '<br>';
+        $message .= 'Your total is: ' . $totalValue;
 
         return [
             'errors' => false,
-            'message' => $message
+            'message' => $message,
+            'totalValue' => $totalValue
         ];
     }
 }
@@ -105,7 +109,7 @@ $formSubmitted = !empty($_POST);
 $result = [];
 
 if ($formSubmitted) {
-    $result = handleForm($products);
+    $result = handleForm($products, $totalValue);
 }
 
 require 'form-view.php';
