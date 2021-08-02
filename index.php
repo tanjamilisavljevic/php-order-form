@@ -94,8 +94,6 @@ function handleForm($products, &$totalValue)
         $_SESSION['streetnumber'] = $_POST['streetnumber'];
         $_SESSION['zipcode'] = $_POST['zipcode'];
         $_SESSION['city'] = $_POST['city'];
-        $message .= '<br>';
-        $message .= 'Your total is: ' . $totalValue;
 
         return [
             'errors' => false,
