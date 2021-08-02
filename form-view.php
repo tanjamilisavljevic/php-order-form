@@ -1,5 +1,4 @@
 <?php // This files is mostly containing things for your view / html
-
 ?>
 
 <!doctype html>
