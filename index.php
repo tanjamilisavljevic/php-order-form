@@ -25,6 +25,7 @@ function whatIsHappening()
     var_dump($_SESSION);
     echo '</pre>';
 }
+
 //whatIsHappening();
 
 
@@ -62,6 +63,7 @@ function validate()
 
 
 function handleForm($products, &$totalValue)
+//     & changes the original value
 {
     // Validation (step 2)
     $invalidFields = validate();
@@ -81,7 +83,7 @@ function handleForm($products, &$totalValue)
 
         foreach ($productNumbers as $productNumber) {
             $productNames[] = $products[$productNumber]['name'];
-            $totalValue = $totalValue+ $products[$productNumber]['price'];
+            $totalValue = $totalValue + $products[$productNumber]['price'];
         }
 
         $message = 'Products : ' . implode(', ', $productNames);
