@@ -11,6 +11,8 @@ error_reporting(E_ALL);
 // We are going to use session variables so we need to enable sessions
 session_start();
 
+require 'product.php';
+
 // Use this function when you need to need an overview of these variables
 function whatIsHappening()
 {
@@ -29,11 +31,23 @@ function whatIsHappening()
 //whatIsHappening();
 
 
+//$products = [
+//    ['name' => 'Taucher', 'price' => 22],
+//    ['name' => 'Kugelrock', 'price' => 33],
+//    ['name' => 'Abstrakter', 'price' => 44],
+//    ['name' => 'Kugelhande', 'price' => 55]
+//];
+
+$taucher = new Product('Taucher', 22);
+$kugelrock = new Product('Kugelrock', 33);
+$abstrakter = new Product('Abstrakter', 44);
+$kugelhande = new Product('Kugelhande', 55);
+
 $products = [
-    ['name' => 'Taucher', 'price' => 22],
-    ['name' => 'Kugelrock', 'price' => 33],
-    ['name' => 'Abstrakter', 'price' => 44],
-    ['name' => 'Kugelhande', 'price' => 55]
+    $taucher,
+    $kugelrock,
+    $abstrakter,
+    $kugelhande
 ];
 
 $totalValue = 0;
@@ -82,8 +96,8 @@ function handleForm($products, &$totalValue)
         $productNames = [];
 
         foreach ($productNumbers as $productNumber) {
-            $productNames[] = $products[$productNumber]['name'];
-            $totalValue = $totalValue + $products[$productNumber]['price'];
+            $productNames[] = $products[$productNumber] -> name;
+            $totalValue = $totalValue + $products[$productNumber] -> price;
         }
 
         $message = 'Products : ' . implode(', ', $productNames);

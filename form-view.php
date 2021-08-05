@@ -91,9 +91,9 @@
                                 echo "checked='checked'";
                             }
                         }
-                    } ?> name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?>
+                    } ?> name="products[<?php echo $i ?>]"/> <?php echo $product -> name ?>
                     -
-                    &euro; <?= number_format($product['price'], 2) ?></label><br/>
+                    &euro; <?= number_format($product -> price, 2) ?></label><br/>
             <?php endforeach; ?>
         </fieldset>
 
