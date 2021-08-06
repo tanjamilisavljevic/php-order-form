@@ -12,6 +12,8 @@ error_reporting(E_ALL);
 session_start();
 
 require 'Product.php';
+//require 'Customer.php';
+
 
 // Use this function when you need to need an overview of these variables
 function whatIsHappening()
