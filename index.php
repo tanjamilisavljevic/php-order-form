@@ -11,7 +11,7 @@ error_reporting(E_ALL);
 // We are going to use session variables so we need to enable sessions
 session_start();
 
-require 'product.php';
+require 'Product.php';
 
 // Use this function when you need to need an overview of these variables
 function whatIsHappening()
